@@ -1,5 +1,5 @@
 {
-    "name":         "lezhnev74/SimpleDownloader",
+    "name":         "lezhnev74/simple-downloader",
     "type":         "library",
     "description":  "Simple file downloader",
     "keywords":     ["downloader","simple downloader"],
