@@ -1,6 +1,5 @@
 <?php
-
-namespace Kodify\DownloaderBundle\Service;
+namespace SimpleDownloader\Classes;
 
 function exec($command)
 {
@@ -12,16 +11,14 @@ function exec($command)
     return \exec($command);
 }
 
-
-namespace Kodify\DownloaderBundle\Tests\Controller;
-
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
-use Kodify\DownloaderBundle\Service\Downloader;
+namespace SimpleDownloader\Test;
+use PHPUnit_Framework_TestCase;
+use SimpleDownloader\Classes\Downloader;
 
 /**
  * @group test
  */
-class DownloaderExecMockedTest extends \PHPUnit_Framework_TestCase
+class DownloaderExecMockedTest extends PHPUnit_Framework_TestCase
 {
     protected $downloader;
     protected $filename = 'downloadedFileTest2.pl';
@@ -36,7 +33,7 @@ class DownloaderExecMockedTest extends \PHPUnit_Framework_TestCase
     public function tearDown()
     {
         unlink($this->path . $this->filename);
-        unlink($this->path . $this->filename . '.out');
+        @unlink($this->path . $this->filename . '.out');
         rmdir($this->path);
     }
 
@@ -48,10 +45,10 @@ class DownloaderExecMockedTest extends \PHPUnit_Framework_TestCase
         $params4 = new \stdClass();
 
         return array(
-            array($params1, 'wget -q -c  "http://www.google.com/robots.txt" -O ' . $this->path . $this->filename),
-            array($params2, 'wget  "http://www.google.com/robots.txt" -O ' . $this->path . $this->filename),
-            array($params3, 'wget  "http://www.google.com/robots.txt" -O ' . $this->path . $this->filename),
-            array($params4, 'wget  "http://www.google.com/robots.txt" -O ' . $this->path . $this->filename)
+            array($params1, 'wget -q -c  http://www.google.com/robots.txt -O ' . $this->path . $this->filename),
+            array($params2, 'wget  http://www.google.com/robots.txt -O ' . $this->path . $this->filename),
+            array($params3, 'wget  http://www.google.com/robots.txt -O ' . $this->path . $this->filename),
+            array($params4, 'wget  http://www.google.com/robots.txt -O ' . $this->path . $this->filename)
         );
     }
 

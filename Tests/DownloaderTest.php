@@ -1,11 +1,9 @@
 <?php
 
-namespace Kodify\DownloaderBundle\Tests\Controller;
+use SimpleDownloader\Exceptions\FileException;
+use SimpleDownloader\Classes\Downloader;
 
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
-use Kodify\DownloaderBundle\Service\Downloader;
-
-class DownloaderTest extends \PHPUnit_Framework_TestCase
+class DownloaderTest extends PHPUnit_Framework_TestCase
 {
 
     protected $downloader;
@@ -41,7 +39,7 @@ class DownloaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Symfony\Component\HttpFoundation\File\Exception\FileException
+     * @expectedException \SimpleDownloader\Exceptions\FileException
      */
     public function testDownloadFileWithPathNonWritable()
     {
@@ -51,7 +49,7 @@ class DownloaderTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * @expectedException Symfony\Component\HttpFoundation\File\Exception\FileException
+     * @expectedException \SimpleDownloader\Exceptions\FileException
      */
     public function testDownloadFileWithPathNonExistingAndNonWritable()
     {
@@ -62,24 +60,24 @@ class DownloaderTest extends \PHPUnit_Framework_TestCase
     public function testDownloadFileOKCreatingDirectory()
     {
         $path = '/tmp/test/';
-
         $downloadUrl = 'http://www.google.com/robots.txt';
         $filename = 'downloadedFile.pl';
-        $this->downloader->downloadFile($downloadUrl, $path, $filename);
-        $this->assertTrue(is_dir($path));
         $finalFile = "{$path}{$filename}";
+
+        $this->downloader->downloadFile($downloadUrl, $path, $filename);
+
+        $this->assertTrue(is_dir($path));
         $this->assertTrue(file_exists($finalFile), 'File was not created');
         $this->assertGreaterThan(0, filesize($finalFile), 'Filesize is not correct');
 
-        unlink($finalFile);
-        unlink($finalFile . '.out');
-        rmdir($path);
+        @unlink($finalFile);
+        @rmdir($path);
     }
 
     public function testDownloadFileOKNotCreatingDirectory()
     {
         $path = '/tmp/test/';
-        mkdir($path, 0700);
+        @mkdir($path, 0700);
         $downloadUrl = 'http://www.google.com/robots.txt';
         $filename = 'downloadedFile.pl';
         $this->downloader->downloadFile($downloadUrl, $path, $filename);
@@ -88,18 +86,17 @@ class DownloaderTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(file_exists($finalFile), 'File was not created');
         $this->assertGreaterThan(0, filesize($finalFile), 'Filesize is not correct');
 
-        unlink($finalFile);
-        unlink($finalFile . '.out');
-        rmdir($path);
+        @unlink($finalFile);
+        @rmdir($path);
     }
 
     /**
-     * @expectedException Symfony\Component\HttpFoundation\File\Exception\FileException
+     * @expectedException \SimpleDownloader\Exceptions\FileException
      */
     public function testDownloadFileWrongUrl()
     {
         $path = '/tmp/test/';
-        mkdir($path, 0700);
+        @mkdir($path, 0700);
         $downloadUrl = '\agfdsñakdsf';
         $filename = 'downloadedFile.pl';
         $this->downloader->downloadFile($downloadUrl, $path, $filename);

@@ -9,13 +9,13 @@
          processIsolation               = "false"
          stopOnFailure                  = "false"
          syntaxCheck                    = "false"
-         bootstrap                      = "Tests/bootstrap.php"
+         bootstrap                      = "tests/bootstrap.php"
          strict                         = "true"
         >
 
     <testsuites>
-        <testsuite name = "Kodify Downloader Test Suite">
-            <directory>./Tests</directory>
+        <testsuite name = "Simple Downloader Test Suite">
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
 </phpunit>
