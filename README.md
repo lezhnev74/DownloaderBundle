@@ -15,9 +15,7 @@ Installation
 
 Add the following dependencies to your projects composer.json file:
       
-      "require": {
-          ...
-      }
+      composer require lezhnev74/simple-downloader 
       
       
       
