@@ -1,10 +1,10 @@
 {
-    "name":         "",
+    "name":         "lezhnev74/SimpleDownloader",
     "type":         "library",
-    "description":  "Simple downloader",
+    "description":  "Simple file downloader",
     "keywords":     ["downloader","simple downloader"],
     "version":      "1.0.0",
-    "homepage":     "https://github.com/lezhnev74/DownloaderBundle",
+    "homepage":     "https://github.com/lezhnev74/SimpleDownloader",
     "license":      "Apache-2.0",
     "authors":      [
         {

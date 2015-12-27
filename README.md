@@ -2,7 +2,7 @@ Downloader Bundle
 ================
 
 Simple Downloader
-(forked from Simple Downloader but with no dependency on Symfony framework)
+(forked from kodify/DownloaderBundle but with no dependency on Symfony framework)
 
 What is this Downloader?
 ------------------------
