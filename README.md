@@ -15,10 +15,30 @@ Installation
 
 Add the following dependencies to your projects composer.json file:
       
-      composer require lezhnev74/simple-downloader 
+    composer require lezhnev74/simple-downloader 
       
       
+Usage
+------------
+
+    use Exception;
+    use InvalidArgumentException;
+    use SimpleDownloader\Classes\Downloader;
+    use SimpleDownloader\Exceptions\FileException;            
+    
+    try {
       
+      $downloader = new Downloader();
+      $downloader->downloadFile("http://google.com/robots.txt", "/tmp", "robots.txt");
+      echo "File was downloaded successfully!";
       
+    } catch(FileException $e) {
+      echo "We have a problem with file: ".$e->getMessage();
+    } catch(InvalidArgumentException $e) {
+      echo "Wrong arguments are passed: ".$e->getMessage();
+    } catch(Exception $e) {
+      echo "Something bad happened: ".$e->getMessage();
+    }
+
       
     
