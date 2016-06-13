@@ -5,6 +5,7 @@ Downloader Bundle
 [![Build Status](https://travis-ci.org/lezhnev74/SimpleDownloader.svg?branch=master)](https://travis-ci.org/lezhnev74/SimpleDownloader)
 [![Dependency Status](https://www.versioneye.com/user/projects/5681997ceb4f47003c0008f3/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5681997ceb4f47003c0008f3)
 [![License](https://poser.pugx.org/lezhnev74/simple-downloader/license)](https://packagist.org/packages/lezhnev74/simple-downloader)
+[![Total Downloads](https://poser.pugx.org/lezhnev74/simple-downloader/downloads)](https://packagist.org/packages/lezhnev74/simple-downloader)
 
 Simple Downloader
 (forked from kodify/DownloaderBundle but with no dependency on Symfony framework)
